@@ -13,6 +13,8 @@
                 <div class="heading">
                 <h1>Chris Industries</h1>
                 </div>
-                
+                <div class="profil">
+                <h4>Hallo ich bin Chris lerne IT und bin besonders interessiert in Netzwerk Administration, Cyber Securtiy und Development. Nebenbei bin ich ein Autofreak der besonder JDM, Drift und 5 Zylinder mag.</h4>
+                </div>
             </body>
 </html>
