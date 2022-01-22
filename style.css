@@ -1,0 +1,12 @@
+body
+{
+    background-color: black;
+    color: whitesmoke;
+}
+
+.heading 
+{
+    position: relative;
+    background-color: gray;
+    margin: 0px;
+}
