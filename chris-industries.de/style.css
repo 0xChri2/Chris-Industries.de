@@ -2,10 +2,22 @@ body
 {
     background-color: rgb(24, 24, 29);
     color: whitesmoke;
+    scroll-behavior: smooth;
+    
 }
 
 .heading 
 {
-    position: relative;
-    background-color:#23272A;
+    position: absolute;
+    background-color:#23272A ;
+    top: 0px;
+    left:0px;
+    width: 100%;
+    bottom: 88%;
+    padding-left: 2%;
+}
+
+.profil
+{
+   margin-top: 10%;
 }
