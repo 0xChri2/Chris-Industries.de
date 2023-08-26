@@ -1,5 +1,5 @@
 <template>
-    <main class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-black">
+    <main class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-black">
     
     <div class="flex items-center justify-center ">
         <h1 class="mt-12 lg:!mt-20 w-[300px] md:w-full font-extrabold text-5xl lg:text-6xl leading-tight text-center mb-4 bg-clip-text text-transparent bg-gradient-to-b from-black/80 to-black dark:from-white dark:to-[#AAAAAA]">Chris Industries</h1>
@@ -18,6 +18,17 @@
         <h1 class="text-2xl md:text-4xl font-semibold text-white ">Chris</h1>
         <p class="text-gray-300 mt-2">Hallo, ich bin Chris, lerne IT und bin besonders interessiert an Netzwerkadministration, Cyber Security und Development. Nebenbei bin ich ein Autofreak der besonders JDM, Drift, 5 Zylinder, BMW und mehr mag.</p>
     </div>
+</div>
+
+<div class="flex flex-col items-left justify-left ml-20 mt-20 md:mt-15">
+    <h1 class="text-2xl md:text-4xl font-semibold text-white mb-4">Mein PC-Setup</h1>
+    <div class= "mb-4 text-gray-300 text-sm">
+        <p><strong>CPU:</strong> AMD Ryzen 7 3800x</p>
+        <p><strong>GPU:</strong> NVIDIA GeForce RTX 3060 AORUS ELITE 12G</p>
+        <p><strong>RAM:</strong> 32GB GSkill</p>
+        <p><strong>Mainboard:</strong> MSI B550 TOMAHAWK</p>
+    </div>
+    <img src="../assets/Setup2022.jpeg" alt="Pc Setup" width="1000" height="800"/> 
 </div>
 
 </main>
