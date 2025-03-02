@@ -21,7 +21,9 @@ import {
   User,
   Share2,
   MessageSquare,
-  Layers
+  Layers,
+  FileText,
+  Shield
 } from 'lucide-react';
 
 
@@ -51,7 +53,9 @@ function App() {
     { id: 'home', label: 'Über Mich', icon: <Home className="w-5 h-5" /> },
     { id: 'interests', label: 'Interessen', icon: <User className="w-5 h-5" /> },
     { id: 'social', label: 'Social Media', icon: <Share2 className="w-5 h-5" /> },
-    { id: 'contact', label: 'Kontakt', icon: <MessageSquare className="w-5 h-5" /> }
+    { id: 'contact', label: 'Kontakt', icon: <MessageSquare className="w-5 h-5" /> },
+    { id: 'impressum', label: 'Impressum', icon: <FileText className="w-5 h-5" /> },
+    { id: 'datenschutz', label: 'Datenschutz', icon: <Shield className="w-5 h-5" /> }
   ];
 
   // Social media links
@@ -59,7 +63,7 @@ function App() {
     { icon: <Github className="w-6 h-6" />, name: 'GitHub', url: 'https://github.com/0xChri2' },
     { icon: <Instagram className="w-6 h-6" />, name: 'Instagram', url: 'https://www.instagram.com/chrisindustries.de/?next=%2F&hl=de' },
     { icon: <Twitter className="w-6 h-6" />, name: 'X', url: 'https://x.com/0xChri2' },
-    { icon: <Linkedin className="w-6 h-6" />, name: 'LinkedIn', url: 'https://linkedin.com/' },
+    { icon: <Linkedin className="w-6 h-6" />, name: 'LinkedIn', url: 'https://www.linkedin.com/in/0xchri2/' },
     { icon: <Youtube className="w-6 h-6" />, name: 'YouTube', url: 'https://www.youtube.com/@0xChri2' },
     { icon: <Twitch className="w-6 h-6" />, name: 'Twitch', url: 'https://twitch.tv/' }
   ];
@@ -183,7 +187,7 @@ function App() {
       <nav className="md:hidden fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <div className="relative w-8 h-8">
+            <div className="relative w-10 h-10">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-md blur-sm opacity-70"></div>
               <div className="relative z-10 flex items-center justify-center w-full h-full bg-gray-900/80 rounded-md border border-purple-500/30">
                 <img src="/src/assets/chrisindustries.png" alt="Logo" className="w-10 h-10 object-cover rounded-md" />
@@ -233,10 +237,10 @@ function App() {
       <div className="hidden md:flex fixed left-0 top-0 bottom-0 w-64 bg-gray-900/80 backdrop-blur-md border-r border-gray-800 z-50 flex-col">
         <div className="p-6">
           <div className="flex items-center gap-3 mb-10">
-            <div className="relative w-10 h-10">
+            <div className="relative w-13 h-12">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-md blur-sm opacity-70 animate-pulse"></div>
               <div className="relative z-10 flex items-center justify-center w-full h-full bg-gray-900/80 rounded-md border border-purple-500/30">
-              <img src="/src/assets/chrisindustries.png" alt="Logo" className="w-10 h-10 object-cover rounded-md" />
+              <img src="/src/assets/chrisindustries.png" alt="Logo" className="w-14 h-12 object-cover rounded-md" />
               </div>
             </div>
             <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
@@ -488,42 +492,125 @@ function App() {
             </div>
           </section>
         </div>
+        {/* Impressum Section */}
+        <section 
+            id="impressum" 
+            className={`transition-opacity duration-500 ${
+              activeSection === 'impressum' ? 'opacity-100' : 'opacity-0 hidden'
+            }`}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              Impressum
+            </h2>
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+              <p className="text-gray-400 mb-4">
+                Angaben gemäß § 5 TMG:
+              </p>
+              <p className="text-gray-400 mb-4">
+                Christoph Riedel<br />
+                Lehmkuhler Weg 47<br />
+                40723 Hilden
+              </p>
+              <p className="text-gray-400 mb-4">
+                Kontakt:<br />
+                E-Mail: business@chris-industries.de
+              </p>
+              <p className="text-gray-400 mb-4">
+                Haftungsausschluss:<br />
+                Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
+              </p>
+            </div>
+          </section>
+
+          {/* Datenschutz Section */}
+          <section 
+            id="datenschutz" 
+            className={`transition-opacity duration-500 ${
+              activeSection === 'datenschutz' ? 'opacity-100' : 'opacity-0 hidden'
+            }`}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+              Datenschutz
+            </h2>
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
+              <p className="text-gray-400 mb-4">
+                Datenschutz hat einen besonders hohen Stellenwert für die Geschäftsleitung von Chris Industries. Eine Nutzung der Internetseiten von Chris Industries ist grundsätzlich ohne jede Angabe personenbezogener Daten möglich. Sofern eine betroffene Person besondere Services unseres Unternehmens über unsere Internetseite in Anspruch nehmen möchte, könnte jedoch eine Verarbeitung personenbezogener Daten erforderlich werden.
+              </p>
+              <p className="text-gray-400 mb-4">
+                Die Verarbeitung personenbezogener Daten, beispielsweise des Namens, der Anschrift, E-Mail-Adresse oder Telefonnummer einer betroffenen Person, erfolgt stets im Einklang mit der Datenschutz-Grundverordnung und in Übereinstimmung mit den für Chris Industries geltenden landesspezifischen Datenschutzbestimmungen.
+              </p>
+              <p className="text-gray-400 mb-4">
+                Mittels dieser Datenschutzerklärung möchte unser Unternehmen die Öffentlichkeit über Art, Umfang und Zweck der von uns erhobenen, genutzten und verarbeiteten personenbezogenen Daten informieren. Ferner werden betroffene Personen mittels dieser Datenschutzerklärung über die ihnen zustehenden Rechte aufgeklärt.
+              </p>
+              <p className="text-gray-400 mb-4">
+                Name und Anschrift des für die Verarbeitung Verantwortlichen:<br />
+                Christoph Riedel<br />
+                Lehmkuhler Weg 47<br />
+                40723 Hilden<br />
+                Deutschland<br />
+                E-Mail: business@chris-industries.de
+              </p>
+              <p className="text-gray-400 mb-4">
+                Erfassung von allgemeinen Daten und Informationen:<br />
+                Die Internetseite von Chris Industries erfasst mit jedem Aufruf der Internetseite durch eine betroffene Person oder ein automatisiertes System eine Reihe von allgemeinen Daten und Informationen. Diese allgemeinen Daten und Informationen werden in den Logfiles des Servers gespeichert. Erfasst werden können die (1) verwendeten Browsertypen und Versionen, (2) das vom zugreifenden System verwendete Betriebssystem, (3) die Internetseite, von welcher ein zugreifendes System auf unsere Internetseite gelangt (sogenannte Referrer), (4) die Unterwebseiten, welche über ein zugreifendes System auf unserer Internetseite angesteuert werden, (5) das Datum und die Uhrzeit eines Zugriffs auf die Internetseite, (6) eine Internet-Protokoll-Adresse (IP-Adresse), (7) der Internet-Service-Provider des zugreifenden Systems und (8) sonstige ähnliche Daten und Informationen, die der Gefahrenabwehr im Falle von Angriffen auf unsere informationstechnologischen Systeme dienen.
+              </p>
+              <p className="text-gray-400 mb-4">
+                Diese Informationen werden benötigt, um (1) die Inhalte unserer Internetseite korrekt auszuliefern, (2) die Inhalte unserer Internetseite sowie die Werbung für diese zu optimieren, (3) die dauerhafte Funktionsfähigkeit unserer informationstechnologischen Systeme und der Technik unserer Internetseite zu gewährleisten sowie (4) Strafverfolgungsbehörden im Falle eines Cyberangriffes die zur Strafverfolgung notwendigen Informationen bereitzustellen. Diese anonym erhobenen Daten und Informationen werden durch Chris Industries daher einerseits statistisch und ferner mit dem Ziel ausgewertet, den Datenschutz und die Datensicherheit in unserem Unternehmen zu erhöhen, um letztlich ein optimales Schutzniveau für die von uns verarbeiteten personenbezogenen Daten sicherzustellen. Die anonymen Daten der Server-Logfiles werden getrennt von allen durch eine betroffene Person angegebenen personenbezogenen Daten gespeichert.
+              </p>
+            </div>
+          </section>
       </main>
 
       {/* Footer */}
       <footer className="md:ml-64 bg-gray-900/80 backdrop-blur-md border-t border-gray-800 py-8">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="relative w-8 h-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-md blur-sm opacity-70"></div>
-            <div className="relative z-10 flex items-center justify-center w-full h-full bg-gray-900/80 rounded-md border border-purple-500/30">
-            <img src="/src/assets/chrisindustries.png" alt="Logo" className="w-10 h-10 object-cover rounded-md" />
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center gap-2 mb-4 md:mb-0"> 
+              <div className="relative w-10 h-10">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-md blur-sm opacity-70"></div>
+                <div className="relative z-10 flex items-center justify-center w-full h-full bg-gray-900/80 rounded-md border border-purple-500/30">
+                  <img src="/src/assets/chrisindustries.png" alt="Logo" className="w-10 h-10 object-cover rounded-md" />
+                </div>
+              </div>
+              <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+                Chris Industries
+              </div>
+            </div>
+            <div className="flex space-x-6">
+              {socialLinks.map((social, index) => (
+                <a 
+                  key={index}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-white transition-colors duration-300"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
-          <div className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-            Chris Industries
+          <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+            <div className="flex justify-center space-x-4">
+              <button 
+                onClick={() => setActiveSection('impressum')}
+                className="hover:text-white transition-colors duration-300"
+              >
+                Impressum
+              </button>
+              <button 
+                onClick={() => setActiveSection('datenschutz')}
+                className="hover:text-white transition-colors duration-300"
+              >
+                Datenschutz
+              </button>
+            </div>
+            <div className="mt-4">
+              © {new Date().getFullYear()} Chris Industries. Alle Rechte vorbehalten.
+            </div>
           </div>
         </div>
-        <div className="flex space-x-6">
-          {socialLinks.map((social, index) => (
-            <a 
-              key={index}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition-colors duration-300"
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-      </div>
-      <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} Chris Industries. Alle Rechte vorbehalten.
-      </div>
-    </div>
-  </footer>
+      </footer>
 </div>
     </div>
   );
