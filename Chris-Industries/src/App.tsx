@@ -26,6 +26,8 @@ import {
   Shield
 } from 'lucide-react';
 
+//Title 
+document.title = "Chris Industries";
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
