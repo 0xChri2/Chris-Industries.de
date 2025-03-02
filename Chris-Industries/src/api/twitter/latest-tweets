@@ -1,0 +1,20 @@
+module.exports = async (req, res) => {
+  const userId = "18962530371627376640xChri2"; // Ersetze durch deine Twitter-User-ID
+const bearerToken = "AAAAAAAAAAAAAAAAAAAAAJCozgEAAAAATEhbh7%2B3V6GvLTEro1nLKWYEcNI%3DGIpB2pKtb1iltm1E0PqkUwVjEynlz3cRQhKyXvkIdDRiJ46Cbg"; // Ersetze durch deinen API-Token
+
+  try {
+    const response = await axios.get(`https://api.twitter.com/2/users/${userId}/tweets?max_results=3`, {
+      headers: {
+        "Authorization": `Bearer ${bearerToken}`
+      }
+    });
+
+    console.log("API Response:", response.data); // <-- Hier einfügen!
+
+    const tweets = response.data?.data || [];
+    res.status(200).json(tweets);
+  } catch (error) {
+    console.error("Fehler:", error);
+    res.status(500).json({ error: 'Failed to fetch tweets' });
+  }
+};

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { 
   Github, 
   Instagram, 
@@ -22,6 +24,7 @@ import {
   Layers
 } from 'lucide-react';
 
+
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,6 +44,7 @@ function App() {
       window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
+
 
   // Navigation items
   const navItems = [
@@ -94,7 +98,37 @@ function App() {
     }
   ];
   // Twitter posts
-  const twitterPosts = [
+
+  const tweets = [
+    { id: '1896110478071635991' },
+    { id: '1895808994419360163' },
+    { id: '1874893059185676579' }
+  ];
+
+  const [tweetOptions, setTweetOptions] = useState({
+    theme: 'dark',
+    align: 'center',
+    dnt: true,
+    width: window.innerWidth < 768 ? '100%' : undefined,
+  });
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setTweetOptions({
+        theme: 'dark',
+        align: 'center',
+        dnt: true,
+        width: window.innerWidth < 768 ? '100%' : undefined,
+      });
+    };
+  
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  /*const twitterPosts = [
     {
       id: 1,
       content: "Gerade ein spannendes neues Projekt gestartet! #coding #webdesign",
@@ -116,7 +150,7 @@ function App() {
       likes: 89,
       retweets: 12
     }
-  ];
+  ];*/
 
   return (
     <div 
@@ -313,7 +347,7 @@ function App() {
             </div>
           </section>
 
-
+          
           {/* Social Media Section with Twitter Highlight */}
           <section 
             id="social" 
@@ -333,27 +367,9 @@ function App() {
               </div>
               
               <div className="space-y-6">
-                {twitterPosts.map(post => (
-                  <div key={post.id} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
-                    <p className="text-gray-200 mb-3">{post.content}</p>
-                    <div className="flex justify-between items-center text-sm text-gray-400">
-                      <span>{post.date}</span>
-                      <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-1">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
-                          </svg>
-                          <span>{post.likes}</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-blue-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
-                          </svg>
-                          <span>{post.retweets}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                {tweets.map(tweet => (
+                  <div key={tweet.id} className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
+<TwitterTweetEmbed tweetId={tweet.id} options={tweetOptions} />                  </div>
                 ))}
               </div>
               
