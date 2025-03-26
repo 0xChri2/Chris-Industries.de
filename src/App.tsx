@@ -450,7 +450,7 @@ function App() {
                 </div>
 
                 <div className="space-y-6">
-                  <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
+                  <div className="flex items-center justify-center bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
                     <Tweet id="1904126447855309210" />
                   </div>
                 </div>
@@ -469,7 +469,7 @@ function App() {
               </div>
 
               {/* Other Social Media */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {socialLinks
                   .filter((social) => social.name !== "Twitter")
                   .map((social, index) => (
@@ -486,7 +486,7 @@ function App() {
                       <span className="text-sm font-medium">{social.name}</span>
                     </a>
                   ))}
-              </div>
+              </div>*/}
             </section>
 
             {/* Contact Section */}
