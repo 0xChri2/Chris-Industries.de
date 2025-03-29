@@ -253,7 +253,7 @@ function App() {
               </div>
             </div>
             <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
-              Chris Indstries
+              Chris Industries
             </div>
           </div>
 
