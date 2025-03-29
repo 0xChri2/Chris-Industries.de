@@ -640,8 +640,7 @@ function App() {
             </h2>
             <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700">
               <p className="text-gray-400 mb-4">
-                Datenschutz hat einen besonders hohen Stellenwert für die
-                Geschäftsleitung von Chris Industries. Eine Nutzung der
+                Datenschutz hat einen besonders hohen Stellenwert. Eine Nutzung der
                 Internetseiten von Chris Industries ist grundsätzlich ohne jede
                 Angabe personenbezogener Daten möglich. Sofern eine betroffene
                 Person besondere Services unseres Unternehmens über unsere
@@ -657,7 +656,7 @@ function App() {
                 Datenschutzbestimmungen.
               </p>
               <p className="text-gray-400 mb-4">
-                Mittels dieser Datenschutzerklärung möchte unser Unternehmen die
+                Mittels dieser Datenschutzerklärung möchte wir die
                 Öffentlichkeit über Art, Umfang und Zweck der von uns erhobenen,
                 genutzten und verarbeiteten personenbezogenen Daten informieren.
                 Ferner werden betroffene Personen mittels dieser
