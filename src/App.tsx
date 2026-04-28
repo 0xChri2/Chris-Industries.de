@@ -605,10 +605,6 @@ function App() {
               <p className="text-gray-400 mb-4">Angaben gemäß § 5 TMG:</p>
               <p className="text-gray-400 mb-4">
                 Christoph Riedel
-                <br />
-                Lehmkuhler Weg 47
-                <br />
-                40723 Hilden
               </p>
               <p className="text-gray-400 mb-4">
                 Kontakt:
@@ -667,10 +663,6 @@ function App() {
                 Name und Anschrift des für die Verarbeitung Verantwortlichen:
                 <br />
                 Christoph Riedel
-                <br />
-                Lehmkuhler Weg 47
-                <br />
-                40723 Hilden
                 <br />
                 Deutschland
                 <br />
