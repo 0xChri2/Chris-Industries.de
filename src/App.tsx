@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Tweet } from "react-tweet";
+import React, { useState, useEffect, Component, ErrorInfo } from "react";
+// Temporarily removed `react-tweet` import due to runtime error (entities undefined)
 import {
   Mail,
   Menu,
@@ -28,13 +28,63 @@ import LinkedIn from "./assets/linkedin";
 import chrisIndustriesLogo from "./assets/chrisindustries.png";
 import chrisProfile from "./assets/chris.jpg";
 
+// Debug: module loaded
+console.debug('App.tsx loaded');
+
+import TweetEmbed from './lib/TweetEmbed';
+
 //Title
 document.title = "Chris Industries";
+
+class ErrorBoundary extends Component<{}, { hasError: boolean; error: Error | null; info: ErrorInfo | null }> {
+  constructor(props: {}) {
+    super(props);
+    this.state = { hasError: false, error: null, info: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    this.setState({ error, info });
+    // Also log to console for Vite overlay
+    console.error("Captured error:", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-black text-white p-6">
+          <div className="max-w-3xl">
+            <h1 className="text-2xl font-bold mb-4">Ein Fehler ist aufgetreten</h1>
+            <pre className="whitespace-pre-wrap text-sm bg-gray-900 p-4 rounded">{String(this.state.error)}</pre>
+            {this.state.info && (
+              <details className="mt-4 text-sm text-gray-300">
+                <summary>Stacktrace</summary>
+                <pre className="whitespace-pre-wrap mt-2">{this.state.info.componentStack}</pre>
+              </details>
+            )}
+          </div>
+        </div>
+      );
+    }
+    // @ts-ignore
+    return this.props.children;
+  }
+}
 
 function App() {
   const [activeSection, setActiveSection] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Debug: log initial state on mount
+  useEffect(() => {
+    console.debug('App mounted', { activeSection, isMenuOpen, mousePosition });
+    return () => console.debug('App unmounted');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle mouse movement for background effect
   useEffect(() => {
@@ -168,6 +218,7 @@ function App() {
     dnt: true,
     width: window.innerWidth < 768 ? "100%" : undefined,
   });
+  // Use our safe oEmbed fallback `TweetEmbed` for all tweet previews
 
   useEffect(() => {
     const handleResize = () => {
@@ -182,6 +233,26 @@ function App() {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Global error handlers to help surface runtime issues that would otherwise
+  // cause a white screen. These will log to console and keep the ErrorBoundary
+  // informed via an event.
+  useEffect(() => {
+    const onError = (event: ErrorEvent) => {
+      console.error("Global error:", event.error || event.message, event);
+    };
+    const onRejection = (event: PromiseRejectionEvent) => {
+      console.error("Unhandled promise rejection:", event.reason, event);
+    };
+
+    window.addEventListener("error", onError);
+    window.addEventListener("unhandledrejection", onRejection as EventListener);
+
+    return () => {
+      window.removeEventListener("error", onError);
+      window.removeEventListener("unhandledrejection", onRejection as EventListener);
     };
   }, []);
 
@@ -210,6 +281,7 @@ function App() {
   ];*/
 
   return (
+    <ErrorBoundary>
     <div
       className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white font-sans relative overflow-hidden"
       style={{
@@ -451,7 +523,13 @@ function App() {
 
                 <div className="space-y-6">
                   <div className="flex items-center justify-center bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-blue-500/50 transition-all duration-300">
-                    <Tweet id="1904126447855309210" />
+                    <div className="w-full max-w-3xl">
+                      {tweets.map((t) => (
+                        <div key={t.id} className="mb-6">
+                          <TweetEmbed id={t.id} />
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -768,6 +846,7 @@ function App() {
         </footer>
       </div>
     </div>
+    </ErrorBoundary>
   );
 }
 
